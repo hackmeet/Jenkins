@@ -465,14 +465,14 @@ verify: Service converged
 
 //-------------------Jenkins : Build Steps : Execute Shell------------
 
-usr/bin/docker service rm jenkinsservice
+/usr/bin/docker service rm jenkinsservice
 
-usr/bin/docker image rm meetvasani/jenkins
+# /usr/bin/docker image rm -f meetvasani/jenkins optional
 
-usr/bin/docker build -t meetvasani/jenkins
+/usr/bin/docker image build -t meetvasani/jenkins .
 
-echo dckr_pat_8B3WlWmSAo3MAIePYKumf5Et0Kk | usr/bin/docker login -u meetvasani --password-stdin
+echo dckr_pat_8B3WlWmSAo3MAIePYKumf5Et0Kk | /usr/bin/docker login -u meetvasani --password-stdin
 
-usr/bin/docker image push meetvasani/jenkins
+/usr/bin/docker image push meetvasani/jenkins
 
-usr/bin/docker service create --name jenkinsservice --replicas 5 -p 9040:80 meetvasani/jenkins
+/usr/bin/docker service create --name jenkinsservice --replicas 5 -p 9040:80 meetvasani/jenkins
