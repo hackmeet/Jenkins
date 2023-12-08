@@ -344,3 +344,135 @@ zsh: no such file or directory: https://github.com/D4-80593-meetvasani/Jenkins.g
                
  [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
  vasani   main +  git push -u origin main
+
+  vasani   main  docker image build -t meetvasani/jenkins .
+[+] Building 0.3s (7/7) FINISHED                                                                                docker:default
+ => [internal] load build definition from Dockerfile                                                                      0.0s
+ => => transferring dockerfile: 92B                                                                                       0.0s
+ => [internal] load .dockerignore                                                                                         0.0s
+ => => transferring context: 2B                                                                                           0.0s
+ => [internal] load metadata for docker.io/library/httpd:latest                                                           0.0s
+ => [internal] load build context                                                                                         0.0s
+ => => transferring context: 9.37kB                                                                                       0.0s
+ => CACHED [1/2] FROM docker.io/library/httpd                                                                             0.0s
+ => [2/2] COPY ./index.html /usr/local/apache2/htdocs/                                                                    0.1s
+ => exporting to image                                                                                                    0.0s
+ => => exporting layers                                                                                                   0.0s
+ => => writing image sha256:d39c24e20e5615ab88d50c153210e42b9b3ea37cf4d1bb25e26b35a8535b3f2f                              0.0s
+ => => naming to docker.io/meetvasani/jenkins                                                                             0.0s
+               
+            
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main -  docker image ls                           
+REPOSITORY                    TAG       IMAGE ID       CREATED          SIZE
+meetvasani/jenkins            latest    d39c24e20e56   23 seconds ago   168MB
+meetvasani/dynform            latest    8a03a817e09f   59 minutes ago   168MB
+myimage                       latest    b694d3470b37   2 days ago       168MB
+httpd                         latest    a6ca7b52a415   2 weeks ago      168MB
+gcr.io/k8s-minikube/kicbase   v0.0.42   dbc648475405   4 weeks ago      1.2GB
+mysql                         latest    a3b6608898d6   6 weeks ago      596MB
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main -  docker login   
+Authenticating with existing credentials...
+WARNING! Your password will be stored unencrypted in /home/vasani/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main -  docker logout  
+Removing login credentials for https://index.docker.io/v1/
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main -  docker container ls -a
+
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main -  docker login          
+Log in with your Docker ID or email address to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com/ to create one.
+You can log in with your password or a Personal Access Token (PAT). Using a limited-scope PAT grants better security and is required for organizations using SSO. Learn more at https://docs.docker.com/go/access-tokens/
+
+Username: meetvasani
+Password: 
+Error response from daemon: Get "https://registry-1.docker.io/v2/": dial tcp: lookup registry-1.docker.io on 127.0.0.53:53: read udp 127.0.0.1:40594->127.0.0.53:53: i/o timeout
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ ✘  vasani   main -  docker login   
+Log in with your Docker ID or email address to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com/ to create one.
+You can log in with your password or a Personal Access Token (PAT). Using a limited-scope PAT grants better security and is required for organizations using SSO. Learn more at https://docs.docker.com/go/access-tokens/
+
+Username: meetvasani
+Password: 
+WARNING! Your password will be stored unencrypted in /home/vasani/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main -  docker image push meetvasani/jenkins
+Using default tag: latest
+The push refers to repository [docker.io/meetvasani/jenkins]
+bc276cab239e: Pushed 
+b9bf93af811f: Mounted from meetvasani/dynform 
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main -  sudo systemctl status jenkins  
+
+[sudo] password for vasani: 
+● jenkins.service - Jenkins Continuous Integration Server
+     Loaded: loaded (/lib/systemd/system/jenkins.service; enabled; vendor preset: enabled)
+     Active: active (running) since Fri 2023-12-08 18:53:48 IST; 1h 16min ago
+   Main PID: 31659 (java)
+      Tasks: 49 (limit: 9312)
+     Memory: 1.4G
+        CPU: 1min 6.266s
+     CGroup: /system.slice/jenkins.service
+             └─31659 /usr/bin/java -Djava.awt.headless=true -jar /usr/share/java/jenkins.war --webroot=/var/cache/jenkins/war >
+
+Dec 08 18:52:42 vasani-HP-ENVY-4-Notebook-PC jenkins[31659]: Jenkins initial setup is required. An admin user has been created>
+Dec 08 18:52:42 vasani-HP-ENVY-4-Notebook-PC jenkins[31659]: Please use the following password to proceed to installation:
+Dec 08 18:52:42 vasani-HP-ENVY-4-Notebook-PC jenkins[31659]: 63b6874ed0964f5890e1d53df2cf42d3
+Dec 08 18:52:42 vasani-HP-ENVY-4-Notebook-PC jenkins[31659]: This may also be found at: /var/lib/jenkins/secrets/initialAdminP>
+Dec 08 18:52:42 vasani-HP-ENVY-4-Notebook-PC jenkins[31659]: *************************************************************
+Dec 08 18:52:42 vasani-HP-ENVY-4-Notebook-PC jenkins[31659]: *************************************************************
+Dec 08 18:52:42 vasani-HP-ENVY-4-Notebook-PC jenkins[31659]: *************************************************************
+
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ ✘  vasani   main -  sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+63b6874ed0964f5890e1d53df2cf42d3
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main -                                                    
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main -  docker service create --name jenkinsservice --replicas 5 -p 9040:80 meetvasani/jenkins
+t91sgrt9k3c1vsuiuijg1eqzq
+overall progress: 5 out of 5 tasks 
+1/5: running   [==================================================>] 
+2/5: running   [==================================================>] 
+3/5: running   [==================================================>] 
+4/5: running   [==================================================>] 
+5/5: running   [==================================================>] 
+verify: Service converged 
+
+
+
+
+//-------------------Jenkins : Build Steps : Execute Shell------------
+
+usr/bin/docker service rm jenkinsservice
+
+usr/bin/docker image rm meetvasani/jenkins
+
+usr/bin/docker build -t meetvasani/jenkins
+
+echo dckr_pat_8B3WlWmSAo3MAIePYKumf5Et0Kk | usr/bin/docker login -u meetvasani --password-stdin
+
+usr/bin/docker image push meetvasani/jenkins
+
+usr/bin/docker service create --name jenkinsservice --replicas 5 -p 9040:80 meetvasani/jenkins
