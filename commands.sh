@@ -445,7 +445,7 @@ Dec 08 18:52:42 vasani-HP-ENVY-4-Notebook-PC jenkins[31659]: *******************
  [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
  ✘  vasani   main -  sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
-63b6874ed0964f5890e1d53df2cf42d3
+<password>
                
  [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
  vasani   main -                                                    
@@ -461,6 +461,198 @@ overall progress: 5 out of 5 tasks
 verify: Service converged 
 
 
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  which docker           
+/usr/bin/docker
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  docker service ls                                                                     
+ID             NAME             MODE         REPLICAS   IMAGE                       PORTS
+t91sgrt9k3c1   jenkinsservice   replicated   5/5        meetvasani/jenkins:latest   *:9040->80/tcp
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ ✘  vasani   main  ls -l /var/run/docker.sock
+
+srw-rw---- 1 root docker 0 Dec  8 17:02 /var/run/docker.sock
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+
+[sudo] password for vasani: 
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  sudo systemctl status jenkins
+
+● jenkins.service - Jenkins Continuous Integration Server
+     Loaded: loaded (/lib/systemd/system/jenkins.service; enabled; vendor preset: enabled)
+     Active: active (running) since Fri 2023-12-08 20:44:50 IST; 37s ago
+   Main PID: 45005 (java)
+      Tasks: 55 (limit: 9312)
+     Memory: 275.5M
+        CPU: 29.592s
+     CGroup: /system.slice/jenkins.service
+             └─45005 /usr/bin/java -Djava.awt.headless=true -jar /usr/share/java/jenkins.war --webroot=/var/cache/jenkins/war >
+
+Dec 08 20:44:48 vasani-HP-ENVY-4-Notebook-PC jenkins[45005]: 2023-12-08 15:14:48.835+0000 [id=36]        INFO        jenkins.I>
+Dec 08 20:44:48 vasani-HP-ENVY-4-Notebook-PC jenkins[45005]: 2023-12-08 15:14:48.867+0000 [id=34]        INFO        jenkins.I>
+Dec 08 20:44:48 vasani-HP-ENVY-4-Notebook-PC jenkins[45005]: 2023-12-08 15:14:48.899+0000 [id=36]        INFO        jenkins.I>
+Dec 08 20:44:49 vasani-HP-ENVY-4-Notebook-PC jenkins[45005]: 2023-12-08 15:14:49.896+0000 [id=31]        INFO        jenkins.I>
+Dec 08 20:44:49 vasani-HP-ENVY-4-Notebook-PC jenkins[45005]: 2023-12-08 15:14:49.897+0000 [id=31]        INFO        jenkins.I>
+Dec 08 20:44:49 vasani-HP-ENVY-4-Notebook-PC jenkins[45005]: 2023-12-08 15:14:49.967+0000 [id=34]        INFO        jenkins.I>
+Dec 08 20:44:49 vasani-HP-ENVY-4-Notebook-PC jenkins[45005]: 2023-12-08 15:14:49.986+0000 [id=34]        INFO        jenkins.I>
+lines 1-17
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ ✘  vasani   main  docker service ls            
+ID        NAME      MODE      REPLICAS   IMAGE     PORTS
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  docker container ls -a
+
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  docker service create --name jenkinsservice --replicas 5 -p 9040:80 meetvasani/jenkins
+rc3msfyykewyfzacgj4ur6bog
+overall progress: 5 out of 5 tasks 
+1/5: running   [==================================================>] 
+2/5: running   [==================================================>] 
+3/5: running   [==================================================>] 
+4/5: running   [==================================================>] 
+5/5: running   [==================================================>] 
+verify: Service converged 
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  docker container ls -a                                                                
+
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main -  docker service ls                                                                     
+ID        NAME      MODE      REPLICAS   IMAGE     PORTS
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main -  docker service create --name jenkinsservice --replicas 5 -p 9040:80 meetvasani/jenkins
+r9qi84q1huq35eohwvjwx8tbj
+overall progress: 5 out of 5 tasks 
+1/5: running   [==================================================>] 
+2/5: running   [==================================================>] 
+3/5: running   [==================================================>] 
+4/5: running   [==================================================>] 
+5/5: running   [==================================================>] 
+verify: Service converged 
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main -  git push -u origin main                                                               
+
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+Everything up-to-date
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main -  git add .              
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main +  git commit -m "Version 3 commit"
+
+[main 2f22fc6] Version 3 commit
+ 2 files changed, 7 insertions(+), 7 deletions(-)
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  git push -u origin main         
+
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 500 bytes | 250.00 KiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/D4-80593-meetvasani/Jenkins.git
+   f7b1f83..2f22fc6  main -> main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  git add .                       
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main +  git commit -m "Version 4 commit"
+
+[main 2b9e10c] Version 4 commit
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  git push -u origin main         
+
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 303 bytes | 303.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/D4-80593-meetvasani/Jenkins.git
+   2f22fc6..2b9e10c  main -> main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  git add .              
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main +  git commit -m "Version 5 commit"
+
+[main a995a95] Version 5 commit
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  git push -u origin main         
+
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 303 bytes | 303.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/D4-80593-meetvasani/Jenkins.git
+   2b9e10c..a995a95  main -> main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  git add .                       
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main +  git commit -m "Version 5 commit"
+
+[main 8c3833c] Version 5 commit
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+               
+ [/media/vasani/Sunbeam/1Sunbeam-modules/sdm/jenkins]
+ vasani   main  git push -u origin main         
+
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 301 bytes | 301.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/D4-80593-meetvasani/Jenkins.git
+   a995a95..8c3833c  main -> main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+
+
+
+
+
+
+
+
 
 
 //-------------------Jenkins : Build Steps : Execute Shell------------
@@ -471,7 +663,7 @@ verify: Service converged
 
 /usr/bin/docker image build -t meetvasani/jenkins .
 
-echo dckr_pat_8B3WlWmSAo3MAIePYKumf5Et0Kk | /usr/bin/docker login -u meetvasani --password-stdin
+echo <token> | /usr/bin/docker login -u meetvasani --password-stdin
 
 /usr/bin/docker image push meetvasani/jenkins
 
